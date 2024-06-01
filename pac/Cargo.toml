@@ -1,0 +1,45 @@
+[package]
+name = "at32-pac"
+version = "0.0.1"
+authors = ["danc <dangcheng@hotmail.com>"]
+categories = ["embedded", "hardware-support", "no-std"]
+description = "Peripheral access API for AT32 series microcontrollers"
+keywords = ["arm", "cortex-m", "at32", "at32f4", "hal"]
+documentation = "https://docs.rs/at32-pac"
+repository = "https://github.com/danclive/at32-pac"
+edition = "2018"
+license = "MIT/Apache-2.0"
+readme = "README.md"
+
+[workspace]
+members = ["xtask"]
+
+[dependencies]
+cortex-m = "0.7.7"
+cortex-m-rt = { version = "0.7.3", optional = true }
+critical-section = { version = "1", optional = true }
+portable-atomic = { version = "1", default-features = false, optional = true }
+defmt = { version = "0.3.8", optional = true }
+vcell = "0.1.3"
+
+# meta-dependencies (upgrade as needed, they apply to all PACs):
+# @svd2rust = 0.33.3
+# @form = 0.12.1
+
+[features]
+default = ["rt", "critical-section", "atomics", "at32f435"]
+rt = ["cortex-m-rt/device"]
+critical-section = ["dep:critical-section", "cortex-m/critical-section-single-core"]
+atomics = ["dep:portable-atomic"]
+defmt = ["dep:defmt"]
+
+at32f413 = []
+at32f415 = []
+at32f421 = []
+at32f435 = []
+at32f437 = []
+
+[package.metadata.docs.rs]
+features = ["rt", "critical-section", "at32f421", "at32f435"]
+# default-target = "thumbv7em-none-eabihf"
+targets = ["thumbv7em-none-eabihf"]

@@ -1,0 +1,63 @@
+#[doc = "Register `HSCF` reader"]
+pub type R = crate::R<HscfSpec>;
+#[doc = "Register `HSCF` writer"]
+pub type W = crate::W<HscfSpec>;
+#[doc = "Field `HSRSF` reader - Horizontal scaling resize source factor"]
+pub type HsrsfR = crate::FieldReader<u16>;
+#[doc = "Field `HSRSF` writer - Horizontal scaling resize source factor"]
+pub type HsrsfW<'a, REG> = crate::FieldWriter<'a, REG, 13, u16>;
+#[doc = "Field `HSRTF` reader - Horizontal scaling resize target factor"]
+pub type HsrtfR = crate::FieldReader<u16>;
+#[doc = "Field `HSRTF` writer - Horizontal scaling resize target factor"]
+pub type HsrtfW<'a, REG> = crate::FieldWriter<'a, REG, 13, u16>;
+impl R {
+    #[doc = "Bits 0:12 - Horizontal scaling resize source factor"]
+    #[inline(always)]
+    pub fn hsrsf(&self) -> HsrsfR {
+        HsrsfR::new((self.bits & 0x1fff) as u16)
+    }
+    #[doc = "Bits 16:28 - Horizontal scaling resize target factor"]
+    #[inline(always)]
+    pub fn hsrtf(&self) -> HsrtfR {
+        HsrtfR::new(((self.bits >> 16) & 0x1fff) as u16)
+    }
+}
+impl core::fmt::Debug for R {
+    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+        f.debug_struct("HSCF")
+            .field("hsrtf", &self.hsrtf())
+            .field("hsrsf", &self.hsrsf())
+            .finish()
+    }
+}
+impl W {
+    #[doc = "Bits 0:12 - Horizontal scaling resize source factor"]
+    #[inline(always)]
+    #[must_use]
+    pub fn hsrsf(&mut self) -> HsrsfW<HscfSpec> {
+        HsrsfW::new(self, 0)
+    }
+    #[doc = "Bits 16:28 - Horizontal scaling resize target factor"]
+    #[inline(always)]
+    #[must_use]
+    pub fn hsrtf(&mut self) -> HsrtfW<HscfSpec> {
+        HsrtfW::new(self, 16)
+    }
+}
+#[doc = "Horizontal scaling control flow\n\nYou can [`read`](crate::generic::Reg::read) this register and get [`hscf::R`](R).  You can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero) this register using [`hscf::W`](W). You can also [`modify`](crate::generic::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+pub struct HscfSpec;
+impl crate::RegisterSpec for HscfSpec {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [`hscf::R`](R) reader structure"]
+impl crate::Readable for HscfSpec {}
+#[doc = "`write(|w| ..)` method takes [`hscf::W`](W) writer structure"]
+impl crate::Writable for HscfSpec {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
+#[doc = "`reset()` method sets HSCF to value 0"]
+impl crate::Resettable for HscfSpec {
+    const RESET_VALUE: u32 = 0;
+}

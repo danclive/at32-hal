@@ -1,0 +1,47 @@
+[package]
+name = "at32-hal"
+version = "0.0.1"
+authors = ["danc <dangcheng@hotmail.com>"]
+categories = ["embedded", "hardware-support", "no-std"]
+description = "Peripheral access API for AT32 series microcontrollers"
+keywords = ["arm", "cortex-m", "at32", "at32f4", "hal"]
+documentation = "https://docs.rs/at32-hal"
+repository = "https://github.com/danclive/at32-hal"
+edition = "2018"
+license = "MIT/Apache-2.0"
+readme = "README.md"
+
+[dependencies]
+cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
+cortex-m-rt = "0.7.3"
+critical-section = "1"
+defmt = { version = "0.3.8", optional = true }
+at32-pac = { version = "0.0.1", path = "../pac" }
+embedded-hal = "1.0"
+
+[dev-dependencies]
+defmt-rtt = "0.4.1"
+
+[features]
+default = ["at32f435"]
+defmt = ["dep:defmt", "at32-pac/defmt"]
+
+at32f413 = ["at32-pac/at32f413"]
+at32f415 = ["at32-pac/at32f415"]
+at32f421 = ["at32-pac/at32f421"]
+at32f435 = ["at32-pac/at32f435"]
+at32f437 = ["at32-pac/at32f437"]
+
+[package.metadata.docs.rs]
+features = ["rt", "at32f421", "at32f435"]
+# default-target = "thumbv7em-none-eabihf"
+targets = ["thumbv7em-none-eabihf"]
+
+[profile.dev]
+debug = true
+lto = true
+
+[profile.release]
+debug = true
+lto = true
+opt-level = 3

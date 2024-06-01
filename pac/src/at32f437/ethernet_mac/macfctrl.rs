@@ -1,0 +1,143 @@
+#[doc = "Register `MACFCTRL` reader"]
+pub type R = crate::R<MacfctrlSpec>;
+#[doc = "Register `MACFCTRL` writer"]
+pub type W = crate::W<MacfctrlSpec>;
+#[doc = "Field `FCB_BPA` reader - Flow control busy/back pressure activate"]
+pub type FcbBpaR = crate::BitReader;
+#[doc = "Field `FCB_BPA` writer - Flow control busy/back pressure activate"]
+pub type FcbBpaW<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `ETF` reader - Enable transmit flow control"]
+pub type EtfR = crate::BitReader;
+#[doc = "Field `ETF` writer - Enable transmit flow control"]
+pub type EtfW<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `ERF` reader - Enable receive flow control"]
+pub type ErfR = crate::BitReader;
+#[doc = "Field `ERF` writer - Enable receive flow control"]
+pub type ErfW<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `DUP` reader - Detect unicast pause frame"]
+pub type DupR = crate::BitReader;
+#[doc = "Field `DUP` writer - Detect unicast pause frame"]
+pub type DupW<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `PLT` reader - Pause low threshold"]
+pub type PltR = crate::FieldReader;
+#[doc = "Field `PLT` writer - Pause low threshold"]
+pub type PltW<'a, REG> = crate::FieldWriter<'a, REG, 2>;
+#[doc = "Field `DZQP` reader - Disable zero-quanta pause"]
+pub type DzqpR = crate::BitReader;
+#[doc = "Field `DZQP` writer - Disable zero-quanta pause"]
+pub type DzqpW<'a, REG> = crate::BitWriter<'a, REG>;
+#[doc = "Field `PT` reader - Pass time"]
+pub type PtR = crate::FieldReader<u16>;
+#[doc = "Field `PT` writer - Pass time"]
+pub type PtW<'a, REG> = crate::FieldWriter<'a, REG, 16, u16>;
+impl R {
+    #[doc = "Bit 0 - Flow control busy/back pressure activate"]
+    #[inline(always)]
+    pub fn fcb_bpa(&self) -> FcbBpaR {
+        FcbBpaR::new((self.bits & 1) != 0)
+    }
+    #[doc = "Bit 1 - Enable transmit flow control"]
+    #[inline(always)]
+    pub fn etf(&self) -> EtfR {
+        EtfR::new(((self.bits >> 1) & 1) != 0)
+    }
+    #[doc = "Bit 2 - Enable receive flow control"]
+    #[inline(always)]
+    pub fn erf(&self) -> ErfR {
+        ErfR::new(((self.bits >> 2) & 1) != 0)
+    }
+    #[doc = "Bit 3 - Detect unicast pause frame"]
+    #[inline(always)]
+    pub fn dup(&self) -> DupR {
+        DupR::new(((self.bits >> 3) & 1) != 0)
+    }
+    #[doc = "Bits 4:5 - Pause low threshold"]
+    #[inline(always)]
+    pub fn plt(&self) -> PltR {
+        PltR::new(((self.bits >> 4) & 3) as u8)
+    }
+    #[doc = "Bit 7 - Disable zero-quanta pause"]
+    #[inline(always)]
+    pub fn dzqp(&self) -> DzqpR {
+        DzqpR::new(((self.bits >> 7) & 1) != 0)
+    }
+    #[doc = "Bits 16:31 - Pass time"]
+    #[inline(always)]
+    pub fn pt(&self) -> PtR {
+        PtR::new(((self.bits >> 16) & 0xffff) as u16)
+    }
+}
+impl core::fmt::Debug for R {
+    fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
+        f.debug_struct("MACFCTRL")
+            .field("fcb_bpa", &self.fcb_bpa())
+            .field("etf", &self.etf())
+            .field("erf", &self.erf())
+            .field("dup", &self.dup())
+            .field("plt", &self.plt())
+            .field("dzqp", &self.dzqp())
+            .field("pt", &self.pt())
+            .finish()
+    }
+}
+impl W {
+    #[doc = "Bit 0 - Flow control busy/back pressure activate"]
+    #[inline(always)]
+    #[must_use]
+    pub fn fcb_bpa(&mut self) -> FcbBpaW<MacfctrlSpec> {
+        FcbBpaW::new(self, 0)
+    }
+    #[doc = "Bit 1 - Enable transmit flow control"]
+    #[inline(always)]
+    #[must_use]
+    pub fn etf(&mut self) -> EtfW<MacfctrlSpec> {
+        EtfW::new(self, 1)
+    }
+    #[doc = "Bit 2 - Enable receive flow control"]
+    #[inline(always)]
+    #[must_use]
+    pub fn erf(&mut self) -> ErfW<MacfctrlSpec> {
+        ErfW::new(self, 2)
+    }
+    #[doc = "Bit 3 - Detect unicast pause frame"]
+    #[inline(always)]
+    #[must_use]
+    pub fn dup(&mut self) -> DupW<MacfctrlSpec> {
+        DupW::new(self, 3)
+    }
+    #[doc = "Bits 4:5 - Pause low threshold"]
+    #[inline(always)]
+    #[must_use]
+    pub fn plt(&mut self) -> PltW<MacfctrlSpec> {
+        PltW::new(self, 4)
+    }
+    #[doc = "Bit 7 - Disable zero-quanta pause"]
+    #[inline(always)]
+    #[must_use]
+    pub fn dzqp(&mut self) -> DzqpW<MacfctrlSpec> {
+        DzqpW::new(self, 7)
+    }
+    #[doc = "Bits 16:31 - Pass time"]
+    #[inline(always)]
+    #[must_use]
+    pub fn pt(&mut self) -> PtW<MacfctrlSpec> {
+        PtW::new(self, 16)
+    }
+}
+#[doc = "Ethernet MAC flow control register\n\nYou can [`read`](crate::generic::Reg::read) this register and get [`macfctrl::R`](R).  You can [`reset`](crate::generic::Reg::reset), [`write`](crate::generic::Reg::write), [`write_with_zero`](crate::generic::Reg::write_with_zero) this register using [`macfctrl::W`](W). You can also [`modify`](crate::generic::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
+pub struct MacfctrlSpec;
+impl crate::RegisterSpec for MacfctrlSpec {
+    type Ux = u32;
+}
+#[doc = "`read()` method returns [`macfctrl::R`](R) reader structure"]
+impl crate::Readable for MacfctrlSpec {}
+#[doc = "`write(|w| ..)` method takes [`macfctrl::W`](W) writer structure"]
+impl crate::Writable for MacfctrlSpec {
+    type Safety = crate::Unsafe;
+    const ZERO_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+    const ONE_TO_MODIFY_FIELDS_BITMAP: u32 = 0;
+}
+#[doc = "`reset()` method sets MACFCTRL to value 0"]
+impl crate::Resettable for MacfctrlSpec {
+    const RESET_VALUE: u32 = 0;
+}
